@@ -1,0 +1,1405 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asif Box</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="splash-screen">
+        <div class="logo-container">
+            <h1 class="logo-text">Asif Box</h1>
+        </div>
+        <div class="name-input-container">
+            <p class="input-label">Enter your name to continue</p>
+            <input type="text" id="name-input" placeholder="Your Name">
+            <button id="continue-btn">Continue</button>
+        </div>
+    </div>
+
+    <div id="user-app" class="app-container" style="display: none;">
+        <header class="header">
+            <h1 class="logo">Asif Box</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="carousel-item">
+                    <img id="trending-thumbnail" src="https://via.placeholder.com/600x400/000000/FFFFFF?text=Trending+Show" alt="Trending Show" class="carousel-image">
+                    <div class="carousel-details">
+                        <h2 id="trending-title">Top Action Thriller</h2>
+                        <p id="trending-desc">Watch the new blockbuster now!</p>
+                        <button class="play-button" id="play-trending-btn">Play</button>
+                    </div>
+                </div>
+            </section>
+            <section class="content-row">
+                <h3 class="row-title">New Releases</h3>
+                <div class="thumbnails-container" id="user-new-releases-container">
+                    </div>
+            </section>
+        </main>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-download"></i>
+                <span>Downloads</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <div id="admin-app" class="app-container" style="display: none;">
+        <header class="header">
+            <h1 class="logo">Admin Panel</h1>
+        </header>
+
+        <main class="main-content">
+            <div id="upload-screen" class="admin-screen active">
+                <div class="upload-form-container">
+                    <h3>Upload New Content</h3>
+                    <div class="input-group">
+                        <label for="admin-title">Title</label>
+                        <input type="text" id="admin-title" placeholder="Enter title of the show/movie">
+                    </div>
+                    <div class="input-group">
+                        <label for="admin-description">Description</label>
+                        <textarea id="admin-description" placeholder="Write a brief description..."></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="admin-thumbnail">Thumbnail</label>
+                        <input type="file" id="admin-thumbnail" accept="image/*">
+                    </div>
+                    <div class="input-group">
+                        <label for="admin-video">Video File</label>
+                        <input type="file" id="admin-video" accept="video/*">
+                    </div>
+                    <div class="input-group">
+                        <label for="content-location">Content Placement</label>
+                        <select id="content-location">
+                            <option value="new-releases">New Releases</option>
+                            <option value="trending">Trending (Top Hero Section)</option>
+                        </select>
+                    </div>
+                    <button id="admin-submit" class="submit-button">Add Content</button>
+                </div>
+            </div>
+
+            <div id="content-list-screen" class="admin-screen" style="display:none;">
+                <div class="screen-header">
+                    <h3>Content Library</h3>
+                    <button id="refresh-view-btn" class="refresh-btn"><i class="fas fa-sync-alt"></i> Preview</button>
+                </div>
+                <ul id="admin-content-list">
+                    </ul>
+            </div>
+
+            <div id="playlist-manager-screen" class="admin-screen" style="display:none;">
+                <h3>Playlist Manager</h3>
+                <div class="playlist-form">
+                    <input type="text" id="new-playlist-title" placeholder="New Playlist Title">
+                    <label for="new-playlist-thumbnail">Playlist Thumbnail</label>
+                    <input type="file" id="new-playlist-thumbnail" accept="image/*">
+                    <button id="add-playlist-btn">Create Playlist</button>
+                </div>
+                <ul id="admin-playlist-list">
+                    </ul>
+            </div>
+            
+            <div id="settings-screen" class="admin-screen" style="display:none;">
+                <h3>Admin Settings</h3>
+                <div class="settings-section">
+                    <h4>Create New Admin Account</h4>
+                    <div class="input-group">
+                        <label for="master-password">Master Password</label>
+                        <input type="password" id="master-password" placeholder="Enter master password">
+                    </div>
+                    <div class="input-group">
+                        <label for="new-admin-name">New Admin Username</label>
+                        <input type="text" id="new-admin-name" placeholder="New username">
+                    </div>
+                    <button id="create-admin-btn" class="submit-button">Create Account</button>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="#" class="admin-nav-item active" data-target="upload-screen">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload</span>
+            </a>
+            <a href="#" class="admin-nav-item" data-target="content-list-screen">
+                <i class="fas fa-list"></i>
+                <span>Content</span>
+            </a>
+            <a href="#" class="admin-nav-item" data-target="playlist-manager-screen">
+                <i class="fas fa-compact-disc"></i>
+                <span>Playlist</span>
+            </a>
+            <a href="#" class="admin-nav-item" data-target="settings-screen">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <div id="video-player-modal" class="modal" style="display: none;">
+        <div class="video-detail-page">
+            <div class="video-top-bar">
+                <button class="back-btn close-btn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="video-player-wrapper">
+                <video id="video-player" controls autoplay></video>
+                <div id="data-warning" class="data-warning-overlay" style="display: none;">
+                    <p>Using unlimited data plan in Non-Wi-Fi environment.</p>
+                    <button id="continue-playing-btn">Continue playing</button>
+                </div>
+            </div>
+            <div class="video-content-details">
+                <h2 id="detail-title"></h2>
+                <div class="detail-info-row">
+                    <span class="detail-rating"><i class="fas fa-star"></i> <span id="detail-rating-value"></span></span>
+                    <span class="detail-year" id="detail-year-value"></span>
+                    <span class="detail-country" id="detail-country-value"></span>
+                    <span class="detail-genre" id="detail-genre-value"></span>
+                    <span class="detail-seasons" id="detail-seasons-value"></span>
+                    <button class="info-btn"><i class="fas fa-info-circle"></i> Info</button>
+                </div>
+                <div class="detail-actions">
+                    <button class="action-btn"><i class="fas fa-plus"></i> Add to list</button>
+                    <button class="action-btn"><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="action-btn"><i class="fas fa-download"></i> Download</button>
+                    <button class="action-btn"><i class="fas fa-eye"></i> View downloads</button>
+                </div>
+                <div class="resources-section">
+                    <h4>Resources</h4>
+                    <p>Uploaded by Chacha_Klientinu etc. <i class="fas fa-question-circle"></i></p>
+                </div>
+                <div class="episode-selection-controls">
+                    <select class="selection-dropdown">
+                        <option value="hindi">Hindi dub</option>
+                        <option value="english">English dub</option>
+                    </select>
+                    <select class="selection-dropdown">
+                        <option value="S01">Season 01</option>
+                        <option value="S02">Season 02</option>
+                    </select>
+                </div>
+                <div class="episode-list">
+                    <button class="episode-btn active">All</button>
+                    <button class="episode-btn active">01</button>
+                    <button class="episode-btn">02</button>
+                    <button class="episode-btn">03</button>
+                    <button class="episode-btn">04</button>
+                    <button class="episode-btn">05</button>
+                    <button class="episode-btn">06</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="episode-upload-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="episode-modal-title"></h3>
+            <div class="input-group">
+                <label for="episode-title">Episode Title</label>
+                <input type="text" id="episode-title" placeholder="e.g., Episode 1">
+            </div>
+            <div class="input-group">
+                <label for="episode-thumbnail">Thumbnail</label>
+                <input type="file" id="episode-thumbnail" accept="image/*">
+            </div>
+            <div class="input-group">
+                <label for="episode-video">Video File</label>
+                <input type="file" id="episode-video" accept="video/*">
+            </div>
+            <button id="add-episode-btn" class="submit-button">Add Episode</button>
+            <ul id="admin-episode-list"></ul>
+        </div>
+    </div>
+    
+    <div id="user-playlist-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="user-playlist-title"></h3>
+            <ul id="user-episode-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html><style>:root {
+    --primary-color: #E50914; /* Netflix Red */
+    --secondary-color: #B81D24; /* Darker Red */
+    --background-color: #141414; /* Dark Grey */
+    --text-color: #E5E5E5; /* Light Grey */
+    --card-background: #242424; /* Slightly lighter grey for cards */
+}
+
+/* Base Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+.app-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.app-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Splash Screen */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: opacity 1s ease;
+}
+
+.splash-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo-container {
+    overflow: hidden;
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    animation: fade-in 1.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.name-input-container {
+    opacity: 0;
+    animation: slide-up 1s 1.5s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    width: 80%;
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.input-label {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+#name-input {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 2px solid var(--card-background);
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#name-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#continue-btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Header */
+.header {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+/* Main Content (User) */
+.main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 5rem;
+}
+
+/* Hero Section (Carousel) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    color: #fff;
+}
+
+.carousel-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.carousel-details p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.play-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.play-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Content Rows */
+.content-row {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+
+.row-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+}
+
+.thumbnails-container {
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.thumbnails-container::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnail-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail-card:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.playlist-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.thumbnail-title {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.playlist-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.playlist-card:hover {
+    transform: scale(1.05);
+}
+
+
+/* Admin Panel Specific Styles */
+#admin-app .header {
+    background-color: #000;
+}
+#admin-app .logo {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.admin-screen {
+    padding: 1rem;
+    display: none;
+}
+
+.admin-screen.active {
+    display: block;
+}
+
+.upload-form-container {
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.4rem;
+}
+
+.input-group input, .input-group textarea, .input-group select {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid var(--card-background);
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-group select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E5E5E5%22%20d%3D%22M287%20163.6l-14.7-14.7-130.6%20130.6L9.6%20148.9l-14.7%2014.7L145.4%20292.4%20287%20163.6z%22%2F%3E%3Cpath%20fill%3D%22%23E5E5E5%22%20d%3D%22M287%20128.8L145.4%200%203.8%20128.8l14.7%2014.7%20126.9-126.9L272.3%20143.5l14.7-14.7z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+}
+
+
+.submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-content-list, .admin-playlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-content-item, .admin-playlist-item, .episode-item {
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.episode-item {
+    padding: 0.5rem;
+    margin-left: 1rem;
+}
+
+.admin-content-item-info h4, .admin-playlist-item h4 {
+    margin: 0;
+    color: #fff;
+}
+
+.admin-actions button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+.admin-actions .add-episode-btn {
+    color: #4CAF50;
+}
+.admin-actions .delete-btn {
+    color: #f44336;
+}
+.admin-actions .preview-btn {
+    color: #33a8ff;
+}
+
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.refresh-btn {
+    background-color: #33a8ff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+
+/* Bottom Navigation Bar (Shared) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4rem;
+    background-color: var(--card-background);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.nav-item, .admin-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    font-size: 0.7rem;
+}
+
+.nav-item i, .admin-nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.nav-item.active, .admin-nav-item.active {
+    color: var(--primary-color);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+#video-player {
+    width: 100%;
+    height: auto;
+}
+
+#user-episode-list {
+    list-style: none;
+    padding: 0;
+}
+#user-episode-list li {
+    background-color: #333;
+    padding: 0.7rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+#admin-episode-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* New Video Player Styles */
+.video-detail-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.video-detail-page::-webkit-scrollbar {
+    display: none;
+}
+.video-top-bar {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2001;
+}
+.back-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+.video-player-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+}
+#video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.data-warning-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+}
+#continue-playing-btn {
+    padding: 0.7rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* Video Content Details Section */
+.video-content-details {
+    padding: 1.5rem 1rem;
+    color: var(--text-color);
+}
+#detail-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.detail-info-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+}
+.detail-info-row span {
+    font-size: 0.9rem;
+    color: #999;
+}
+.detail-rating {
+    color: #FFD700; /* Gold color for star rating */
+}
+.info-btn {
+    background: none;
+    border: 1px solid #555;
+    color: #999;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.detail-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.action-btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 45%;
+}
+.action-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #999;
+}
+.resources-section h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.resources-section p {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+}
+.episode-selection-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.selection-dropdown {
+    width: 50%;
+    padding: 0.7rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+.episode-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.episode-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.episode-btn.active {
+    background-color: var(--primary-color);
+}</style><script>// Global variables and elements
+let isLoggedInAsAdmin = false;
+let contentData = [];
+let adminAccounts = ['@12asif890'];
+const MASTER_PASSWORD = 'asif'; // You can change this master password
+
+const splashScreen = document.querySelector('.splash-screen');
+const nameInput = document.getElementById('name-input');
+const continueBtn = document.getElementById('continue-btn');
+const userApp = document.getElementById('user-app');
+const adminApp = document.getElementById('admin-app');
+const userNewReleasesContainer = document.getElementById('user-new-releases-container');
+const trendingSection = document.getElementById('trending-thumbnail');
+const trendingTitle = document.getElementById('trending-title');
+const trendingDesc = document.getElementById('trending-desc');
+const playTrendingBtn = document.getElementById('play-trending-btn');
+
+// Admin Panel Elements
+const adminNavItems = document.querySelectorAll('.admin-nav-item');
+const adminScreens = document.querySelectorAll('.admin-screen');
+const uploadScreen = document.getElementById('upload-screen');
+const contentListScreen = document.getElementById('content-list-screen');
+const playlistManagerScreen = document.getElementById('playlist-manager-screen');
+const settingsScreen = document.getElementById('settings-screen');
+const adminTitleInput = document.getElementById('admin-title');
+const adminDescriptionInput = document.getElementById('admin-description');
+const adminThumbnailInput = document.getElementById('admin-thumbnail');
+const adminVideoInput = document.getElementById('admin-video');
+const contentLocationSelect = document.getElementById('content-location');
+const adminSubmitBtn = document.getElementById('admin-submit');
+const adminContentList = document.getElementById('admin-content-list');
+const refreshViewBtn = document.getElementById('refresh-view-btn');
+const newPlaylistTitleInput = document.getElementById('new-playlist-title');
+const newPlaylistThumbnailInput = document.getElementById('new-playlist-thumbnail');
+const addPlaylistBtn = document.getElementById('add-playlist-btn');
+const adminPlaylistList = document.getElementById('admin-playlist-list');
+const masterPasswordInput = document.getElementById('master-password');
+const newAdminNameInput = document.getElementById('new-admin-name');
+const createAdminBtn = document.getElementById('create-admin-btn');
+
+// Modals
+const videoPlayerModal = document.getElementById('video-player-modal');
+const videoPlayer = document.getElementById('video-player');
+const closeButtons = document.querySelectorAll('.close-btn');
+const episodeUploadModal = document.getElementById('episode-upload-modal');
+const episodeModalTitle = document.getElementById('episode-modal-title');
+const episodeTitleInput = document.getElementById('episode-title');
+const episodeThumbnailInput = document.getElementById('episode-thumbnail');
+const episodeVideoInput = document.getElementById('episode-video');
+const addEpisodeSubmitBtn = document.getElementById('add-episode-btn');
+const adminEpisodeList = document.getElementById('admin-episode-list');
+const userPlaylistModal = document.getElementById('user-playlist-modal');
+const userPlaylistTitle = document.getElementById('user-playlist-title');
+const userEpisodeList = document.getElementById('user-episode-list');
+
+// New Video Player Elements
+const detailTitle = document.getElementById('detail-title');
+const detailRatingValue = document.getElementById('detail-rating-value');
+const detailYearValue = document.getElementById('detail-year-value');
+const detailCountryValue = document.getElementById('detail-country-value');
+const detailGenreValue = document.getElementById('detail-genre-value');
+const detailSeasonsValue = document.getElementById('detail-seasons-value');
+const dataWarning = document.getElementById('data-warning');
+const continuePlayingBtn = document.getElementById('continue-playing-btn');
+
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+    loadContentFromLocalStorage();
+    loadAdminsFromLocalStorage();
+    renderUserContent();
+});
+
+// --- User Authentication ---
+continueBtn.addEventListener('click', () => {
+    const enteredName = nameInput.value.trim();
+    if (enteredName === '') {
+        alert('Please enter your name to continue.');
+        return;
+    }
+
+    isLoggedInAsAdmin = adminAccounts.includes(enteredName);
+    splashScreen.classList.add('hidden');
+
+    setTimeout(() => {
+        splashScreen.style.display = 'none';
+        if (isLoggedInAsAdmin) {
+            adminApp.style.display = 'flex';
+            renderAdminContentList();
+        } else {
+            userApp.style.display = 'flex';
+            renderUserContent();
+        }
+    }, 1000);
+});
+
+// --- Data Storage (Local Storage) ---
+function loadContentFromLocalStorage() {
+    const storedContent = localStorage.getItem('asifbox_content');
+    if (storedContent) {
+        contentData = JSON.parse(storedContent);
+    }
+}
+
+function saveContentToLocalStorage() {
+    localStorage.setItem('asifbox_content', JSON.stringify(contentData));
+}
+
+function loadAdminsFromLocalStorage() {
+    const storedAdmins = localStorage.getItem('asifbox_admins');
+    if (storedAdmins) {
+        adminAccounts = JSON.parse(storedAdmins);
+    }
+}
+
+function saveAdminsToLocalStorage() {
+    localStorage.setItem('asifbox_admins', JSON.stringify(adminAccounts));
+}
+
+// --- Normal User UI Functions ---
+function renderUserContent() {
+    userNewReleasesContainer.innerHTML = '';
+    const trendingContent = contentData.find(c => c.location === 'trending');
+    
+    // Render Trending Content
+    if (trendingContent) {
+        trendingSection.src = trendingContent.thumbnailUrl;
+        trendingTitle.textContent = trendingContent.title;
+        trendingDesc.textContent = trendingContent.description;
+        playTrendingBtn.onclick = () => playVideo(trendingContent);
+    } else {
+        // Fallback for no trending content
+        trendingSection.src = 'https://via.placeholder.com/600x400/000000/FFFFFF?text=No+Trending+Content';
+        trendingTitle.textContent = 'No Trending Content';
+        trendingDesc.textContent = 'Stay tuned for new releases!';
+        playTrendingBtn.style.display = 'none';
+    }
+
+    // Render all other content (videos and playlists)
+    contentData.filter(c => c.location === 'new-releases').forEach(content => {
+        if (content.isPlaylist) {
+            const card = document.createElement('div');
+            card.className = 'playlist-card';
+            card.innerHTML = `
+                <img src="${content.thumbnailUrl}" alt="${content.title}" class="playlist-image">
+                <p class="thumbnail-title">${content.title}</p>
+            `;
+            card.onclick = () => playVideo(content);
+            userNewReleasesContainer.appendChild(card);
+        } else {
+            const card = document.createElement('div');
+            card.className = 'thumbnail-card';
+            card.innerHTML = `
+                <img src="${content.thumbnailUrl}" alt="${content.title}" class="thumbnail-image">
+                <p class="thumbnail-title">${content.title}</p>
+            `;
+            card.onclick = () => playVideo(content);
+            userNewReleasesContainer.appendChild(card);
+        }
+    });
+}
+
+function playVideo(content) {
+    if (content.isPlaylist) {
+        openUserPlaylistModal(content);
+    } else {
+        // Populate the new video details
+        detailTitle.textContent = content.title || 'No Title';
+        detailRatingValue.textContent = content.rating || 'N/A';
+        detailYearValue.textContent = content.year || 'N/A';
+        detailCountryValue.textContent = content.country || 'N/A';
+        detailGenreValue.textContent = content.genre || 'N/A';
+        detailSeasonsValue.textContent = content.seasons || 'N/A';
+
+        // Check for Wi-Fi and show data warning if not on a good connection
+        // Note: This is a simple, illustrative check. A real app would need a more robust solution.
+        if (navigator.connection && navigator.connection.effectiveType !== '4g' && navigator.connection.effectiveType !== 'wifi') {
+             dataWarning.style.display = 'flex';
+        } else {
+            dataWarning.style.display = 'none';
+        }
+        
+        videoPlayer.src = content.videoUrl;
+        videoPlayerModal.style.display = 'flex';
+        videoPlayer.play();
+    }
+}
+
+// Event listener for the "Continue Playing" button
+continuePlayingBtn.addEventListener('click', () => {
+    dataWarning.style.display = 'none';
+});
+
+function openUserPlaylistModal(playlist) {
+    userPlaylistTitle.textContent = playlist.title;
+    userEpisodeList.innerHTML = '';
+    playlist.episodes.forEach(episode => {
+        const li = document.createElement('li');
+        li.textContent = episode.title;
+        li.onclick = () => {
+            // Update the new video player modal with episode details
+            videoPlayer.src = episode.videoUrl;
+            videoPlayerModal.style.display = 'flex';
+            videoPlayer.play();
+            // You may need to update the detail elements here based on episode data
+            detailTitle.textContent = episode.title;
+        };
+        userEpisodeList.appendChild(li);
+    });
+    userPlaylistModal.style.display = 'flex';
+}
+
+// --- Admin Panel Functions ---
+// Tab Navigation
+adminNavItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.currentTarget.dataset.target;
+        adminScreens.forEach(screen => {
+            screen.style.display = 'none';
+        });
+        document.getElementById(targetId).style.display = 'block';
+
+        adminNavItems.forEach(nav => nav.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+
+        if (targetId === 'content-list-screen') {
+            renderAdminContentList();
+        } else if (targetId === 'playlist-manager-screen') {
+            renderAdminPlaylists();
+        }
+    });
+});
+
+// Refresh View
+refreshViewBtn.addEventListener('click', () => {
+    adminApp.style.display = 'none';
+    userApp.style.display = 'flex';
+    renderUserContent();
+    setTimeout(() => {
+        userApp.style.display = 'none';
+        adminApp.style.display = 'flex';
+    }, 5000); // 5 seconds to preview
+});
+
+// Upload Content
+adminSubmitBtn.addEventListener('click', () => {
+    const title = adminTitleInput.value.trim();
+    const description = adminDescriptionInput.value.trim();
+    const thumbnailFile = adminThumbnailInput.files[0];
+    const videoFile = adminVideoInput.files[0];
+    const location = contentLocationSelect.value;
+
+    if (!title || !description || !thumbnailFile || !videoFile) {
+        alert('Please fill out all fields and select both files.');
+        return;
+    }
+
+    const newContent = {
+        id: Date.now().toString(),
+        title: title,
+        description: description,
+        thumbnailUrl: URL.createObjectURL(thumbnailFile),
+        videoUrl: URL.createObjectURL(videoFile),
+        isPlaylist: false,
+        location: location
+    };
+
+    if (location === 'trending') {
+        const oldTrending = contentData.find(c => c.location === 'trending');
+        if (oldTrending) oldTrending.location = 'new-releases';
+    }
+
+    contentData.push(newContent);
+    saveContentToLocalStorage();
+    alert('Content uploaded successfully!');
+
+    // Clear form
+    adminTitleInput.value = '';
+    adminDescriptionInput.value = '';
+    adminThumbnailInput.value = '';
+    adminVideoInput.value = '';
+    renderAdminContentList();
+    renderUserContent(); // Update normal user view
+});
+
+// Render Admin Content List
+function renderAdminContentList() {
+    adminContentList.innerHTML = '';
+    contentData.filter(c => !c.isPlaylist).forEach(content => {
+        const li = document.createElement('li');
+        li.className = 'admin-content-item';
+        li.innerHTML = `
+            <div class="admin-content-item-info">
+                <h4>${content.title}</h4>
+            </div>
+            <div class="admin-actions">
+                <button class="play-check-btn" data-id="${content.id}"><i class="fas fa-play"></i></button>
+                <button class="delete-btn" data-id="${content.id}"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        `;
+        adminContentList.appendChild(li);
+    });
+}
+
+// Handle content actions (Play/Delete)
+adminContentList.addEventListener('click', (e) => {
+    const target = e.target.closest('button');
+    if (!target) return;
+    const contentId = target.dataset.id;
+    const content = contentData.find(item => item.id === contentId);
+    
+    if (target.classList.contains('delete-btn')) {
+        if (confirm('Are you sure you want to delete this content?')) {
+            contentData = contentData.filter(item => item.id !== contentId);
+            saveContentToLocalStorage();
+            renderAdminContentList();
+            renderUserContent();
+        }
+    } else if (target.classList.contains('play-check-btn')) {
+        if (content) playVideo(content);
+    }
+});
+
+// Playlist Manager
+addPlaylistBtn.addEventListener('click', () => {
+    const playlistTitle = newPlaylistTitleInput.value.trim();
+    const playlistThumbnailFile = newPlaylistThumbnailInput.files[0];
+    if (playlistTitle === '' || !playlistThumbnailFile) {
+        alert('Please enter a playlist title and select a thumbnail.');
+        return;
+    }
+    const newPlaylist = {
+        id: Date.now().toString(),
+        title: playlistTitle,
+        thumbnailUrl: URL.createObjectURL(playlistThumbnailFile),
+        isPlaylist: true,
+        location: 'new-releases',
+        episodes: []
+    };
+    contentData.push(newPlaylist);
+    saveContentToLocalStorage();
+    newPlaylistTitleInput.value = '';
+    newPlaylistThumbnailInput.value = '';
+    renderAdminPlaylists();
+    renderUserContent();
+});
+
+function renderAdminPlaylists() {
+    adminPlaylistList.innerHTML = '';
+    contentData.filter(item => item.isPlaylist).forEach(playlist => {
+        const li = document.createElement('li');
+        li.className = 'admin-playlist-item';
+        li.innerHTML = `
+            <h4>${playlist.title} (${playlist.episodes.length} episodes)</h4>
+            <div class="admin-actions">
+                <button class="add-episode-btn" data-id="${playlist.id}"><i class="fas fa-plus"></i> Add Episode</button>
+                <button class="delete-btn" data-id="${playlist.id}"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        `;
+        adminPlaylistList.appendChild(li);
+    });
+}
+
+// Handle playlist actions
+adminPlaylistList.addEventListener('click', (e) => {
+    const target = e.target.closest('button');
+    if (!target) return;
+    const playlistId = target.dataset.id;
+
+    if (target.classList.contains('delete-btn')) {
+        if (confirm('Are you sure you want to delete this playlist?')) {
+            contentData = contentData.filter(item => item.id !== playlistId);
+            saveContentToLocalStorage();
+            renderAdminPlaylists();
+            renderUserContent();
+        }
+    } else if (target.classList.contains('add-episode-btn')) {
+        const playlist = contentData.find(item => item.id === playlistId);
+        if (playlist) {
+            episodeUploadModal.dataset.playlistId = playlistId;
+            episodeModalTitle.textContent = `Add Episode to "${playlist.title}"`;
+            renderAdminEpisodeList(playlist.episodes);
+            episodeUploadModal.style.display = 'flex';
+        }
+    }
+});
+
+function renderAdminEpisodeList(episodes) {
+    adminEpisodeList.innerHTML = '';
+    episodes.forEach((episode, index) => {
+        const li = document.createElement('li');
+        li.className = 'episode-item';
+        li.innerHTML = `
+            <span>${index + 1}. ${episode.title}</span>
+            <div class="admin-actions">
+                <button class="play-check-btn" data-video-url="${episode.videoUrl}"><i class="fas fa-play"></i></button>
+                <button class="delete-episode-btn" data-index="${index}"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        `;
+        adminEpisodeList.appendChild(li);
+    });
+}
+
+adminEpisodeList.addEventListener('click', (e) => {
+    const target = e.target.closest('button');
+    if (!target) return;
+
+    if (target.classList.contains('play-check-btn')) {
+        videoPlayer.src = target.dataset.videoUrl;
+        videoPlayerModal.style.display = 'flex';
+        videoPlayer.play();
+    } else if (target.classList.contains('delete-episode-btn')) {
+        const index = target.dataset.index;
+        const playlistId = episodeUploadModal.dataset.playlistId;
+        const playlist = contentData.find(item => item.id === playlistId);
+        if (playlist) {
+            playlist.episodes.splice(index, 1);
+            saveContentToLocalStorage();
+            renderAdminEpisodeList(playlist.episodes);
+            renderAdminPlaylists();
+            renderUserContent();
+        }
+    }
+});
+
+// Episode Upload Modal
+addEpisodeSubmitBtn.addEventListener('click', () => {
+    const playlistId = episodeUploadModal.dataset.playlistId;
+    const episodeTitle = episodeTitleInput.value.trim();
+    const episodeThumbnailFile = episodeThumbnailInput.files[0];
+    const episodeVideoFile = episodeVideoInput.files[0];
+    
+    if (!episodeTitle || !episodeThumbnailFile || !episodeVideoFile) {
+        alert('Please fill out all episode details and select both files.');
+        return;
+    }
+
+    const playlist = contentData.find(item => item.id === playlistId);
+    if (playlist) {
+        playlist.episodes.push({
+            title: episodeTitle,
+            thumbnailUrl: URL.createObjectURL(episodeThumbnailFile),
+            videoUrl: URL.createObjectURL(episodeVideoFile)
+        });
+        saveContentToLocalStorage();
+        episodeTitleInput.value = '';
+        episodeThumbnailInput.value = '';
+        episodeVideoInput.value = '';
+        renderAdminEpisodeList(playlist.episodes);
+        renderAdminPlaylists();
+        renderUserContent();
+    }
+});
+
+// Settings - Create new admin
+createAdminBtn.addEventListener('click', () => {
+    const masterPass = masterPasswordInput.value;
+    const newAdminName = newAdminNameInput.value.trim();
+    if (masterPass !== MASTER_PASSWORD) {
+        alert('Incorrect master password!');
+        return;
+    }
+    if (newAdminName === '') {
+        alert('Please enter a username for the new admin.');
+        return;
+    }
+    if (adminAccounts.includes(newAdminName)) {
+        alert('This username already exists.');
+        return;
+    }
+    adminAccounts.push(newAdminName);
+    saveAdminsToLocalStorage();
+    alert(`New admin account '${newAdminName}' created successfully!`);
+    masterPasswordInput.value = '';
+    newAdminNameInput.value = '';
+});
+
+// Modal Close
+closeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        videoPlayerModal.style.display = 'none';
+        episodeUploadModal.style.display = 'none';
+        userPlaylistModal.style.display = 'none';
+        videoPlayer.pause();
+        videoPlayer.src = '';
+    });
+});</script>
